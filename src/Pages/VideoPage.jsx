@@ -67,7 +67,7 @@ export default function VideoDetails() {
   };
 
   return (
-    <main className="flex lg:flex-row flex-col w-full px-8 xl:pl-20 xl:pr-6 gap-6 mt-20 lg:h-screen">
+    <main className="flex lg:flex-row flex-col w-full px-2 xl:pl-20 xl:pr-6 gap-6 mt-14 lg:h-screen">
       {/* video details section */}
       {loading ? (
         <img
@@ -77,7 +77,7 @@ export default function VideoDetails() {
       ) : (
         <>
           <section className="flex flex-col gap-2 w-full lg:w-9/12">
-            <div className="w-full h-[45vh] sm:h-[60vh] xl:h-[75vh] min-h-[400px] max-h-[800px] border-[1px] border-white">
+            <div className="w-full h-[30vh] sm:h-[60vh] xl:h-[75vh] min-h-[300px] max-h-[800px] border-[1px] border-white">
               <ReactPlayer
                 url={`https://www.youtube.com/watch?v=${id}`}
                 controls
@@ -166,7 +166,7 @@ export default function VideoDetails() {
               <div className="flex flex-wrap">
                 {showFullDescription ? (
                   <div>
-                    <span className="text-white">{`${video?.description}...`}</span>
+                    <span className="text-white text-xs sm:text-sm lg:text-[16px]">{`${video?.description}...`}</span>
                     <span
                       className="text-white hover:cursor-pointer"
                       onClick={toggleDescBtn}
@@ -176,7 +176,7 @@ export default function VideoDetails() {
                   </div>
                 ) : (
                   <div>
-                    <span className="text-white">{`${video?.description.slice(
+                    <span className="text-white text-xs sm:text-sm lg:text-[16px]">{`${video?.description.slice(
                       0,
                       200
                     )}...`}</span>
