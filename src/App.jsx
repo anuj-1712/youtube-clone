@@ -10,6 +10,7 @@ import ShowNavbar from "./components/ShowNavbar";
 import VideoPage from "./Pages/VideoPage";
 import SearchResultPage from "./Pages/SearchResultPage";
 import SearchPage from "./Pages/SearchPage";
+import Channel from "./Pages/Channel";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="video/:id" element={<VideoPage />} />
             <Route path="search/:searchQuery" element={<SearchResultPage />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="channel/:channelId" element={<Channel />} />
           </Routes>
         </HashRouter>
       </AppContext>

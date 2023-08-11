@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { IconContext } from "react-icons";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineSearch, AiOutlineBell } from "react-icons/ai";
-import { MdOutlineVideoCall } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import youtubeLogo from "../assets/icons8-youtube-48.png";
 import { Context } from "../ContextApi/contextApi";
@@ -63,7 +62,7 @@ export default function Header() {
           <div className="flex justify-center items-center h-5 lg:h-7 w-5 lg:w-7 bg-white text-black font-bold rounded-[50%]">{name.slice(0,1).toUpperCase()}</div>
         ) : (
           <IconContext.Provider value={{ className: "profile-icon" }}>
-            <CgProfile onClick={()=>navigate("/login")}/>
+            <CgProfile onClick={()=>navigate("/")}/>
           </IconContext.Provider>
         )}
       </div>

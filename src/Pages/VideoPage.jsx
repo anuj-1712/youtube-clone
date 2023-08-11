@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../ContextApi/contextApi";
 import { fetchDataFromApi } from "../api/Api";
 import { BiLike, BiSolidLike, BiDislike, BiSolidDislike } from "react-icons/bi";
@@ -9,27 +9,37 @@ import ReactPlayer from "react-player";
 import { IconContext } from "react-icons";
 import SuggestedVideoCard from "../components/SuggestedVideoCard";
 import loader from "../assets/giphy-unscreen.gif";
+import Comments from "../components/Comments";
 
 export default function VideoDetails() {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [subscribed, setSubscribed] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [video, setVideo] = useState();
   const [relatedVideo, setRelatedVideo] = useState("");
-  const { setLoading, loading } = useContext(Context);
+  const {
+    setLoading,
+    loading,
+    subscribed,
+    setSubscribed,
+    comments,
+    setComments,
+  } = useContext(Context);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchVideoDetails();
     fetchRelatedVideoDetails();
+    fetchCommentsDetails()
   }, [id]);
 
   const fetchVideoDetails = () => {
     setLoading(true);
     fetchDataFromApi(`video/details/?id=${id}`)
       .then(({ data }) => {
+        console.log(data);
         setVideo(data);
         setLoading(false);
       })
@@ -41,6 +51,17 @@ export default function VideoDetails() {
     fetchDataFromApi(`video/related-contents/?id=${id}`)
       .then(({ data }) => {
         setRelatedVideo(data);
+        setLoading(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const fetchCommentsDetails = () => {
+    setLoading(true);
+    fetchDataFromApi(`video/comments/?id=${id}`)
+      .then(({ data }) => {
+        setComments(data["comments"]);
+        console.log(data["comments"]);
         setLoading(false);
       })
       .catch((err) => console.log(err));
@@ -58,16 +79,16 @@ export default function VideoDetails() {
     setSaved(!saved);
   };
 
-  const toggleSubscribeBtn = () =>{
-    setSubscribed(!subscribed)
-  }
+  const toggleSubscribeBtn = () => {
+    setSubscribed(!subscribed);
+  };
 
   const toggleDescBtn = () => {
     setShowFullDescription(!showFullDescription);
   };
 
   return (
-    <main className="flex lg:flex-row flex-col w-full px-2 xl:pl-20 xl:pr-6 gap-6 mt-14 lg:h-screen">
+    <main className="flex lg:flex-row flex-col w-full px-2 xl:pl-20 xl:pr-6 gap-6 mt-14">
       {/* video details section */}
       {loading ? (
         <img
@@ -87,7 +108,8 @@ export default function VideoDetails() {
               />
             </div>
             <h2 className="text-white text-xl font-bold">{video?.title}</h2>
-            {/* channel details area */}
+
+            {/* channel name and buttons area */}
             <div className="flex flex-col md:flex-row gap-4 md:justify-between md:items-center w-full">
               <div className="flex sm:flex-row flex-col items-start sm:items-center gap-4 w-full md:w-[45%]">
                 <div className="flex gap-4 items-center">
@@ -95,7 +117,12 @@ export default function VideoDetails() {
                     src={video?.author?.avatar[0]?.url}
                     className="h-7 w-7 rounded-[50%]"
                   />
-                  <div className="flex md:flex-col gap-2 md:gap-0 items-center md:items-start">
+                  <div
+                    className="flex md:flex-col gap-2 md:gap-0 items-center md:items-start"
+                    onClick={() =>
+                      navigate(`/channel/${video?.author?.channelId}`)
+                    }
+                  >
                     <p className="text-white">{video?.author?.title}</p>
                     <p className="text-[#aaa] text-xs">
                       {!video?.author?.stats?.subscribersText
@@ -105,11 +132,17 @@ export default function VideoDetails() {
                   </div>
                 </div>
                 {subscribed ? (
-                  <button className="bg-red-600 text-white text-sm font-medium rounded-lg px-2 py-2" onClick={toggleSubscribeBtn}>
+                  <button
+                    className="bg-red-600 text-white text-sm font-medium rounded-lg px-2 py-2"
+                    onClick={toggleSubscribeBtn}
+                  >
                     Subscribed
                   </button>
                 ) : (
-                  <button className="bg-white text-sm font-medium rounded-lg px-2 py-2" onClick={toggleSubscribeBtn}>
+                  <button
+                    className="bg-white text-sm font-medium rounded-lg px-2 py-2"
+                    onClick={toggleSubscribeBtn}
+                  >
                     Subscribe
                   </button>
                 )}
@@ -163,6 +196,8 @@ export default function VideoDetails() {
                 </p>
                 <p className="text-white font-medium">{video?.publishedDate}</p>
               </div>
+
+              {/* description */}
               <div className="flex flex-wrap">
                 {showFullDescription ? (
                   <div>
@@ -189,6 +224,16 @@ export default function VideoDetails() {
                   </div>
                 )}
               </div>
+            </div>
+            {/* comments section */}
+            <div className="flex flex-col gap-3">
+              {
+                comments?.map((comment,index)=>{
+                  return(
+                    <Comments key={index} avatar={comment?.author?.avatar[0]?.url} content={comment?.content} publishedTime={comment?.publishedTimeText} user={comment?.author?.title}/>
+                  )
+                })
+              }
             </div>
           </section>
 
