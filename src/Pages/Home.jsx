@@ -6,7 +6,7 @@ import VideoList from "../components/VideoList";
 export default function Home() {
   return (
     <main className="w-screen">
-      <div className="w-screen flex lg:mt-20 mt-14">
+      <div className="w-screen flex lg:mt-20 mt-16">
         <div className="w-0 md:w-1/12 xl:w-[6%]">
           <Navbar />
         </div>

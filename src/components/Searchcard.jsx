@@ -17,8 +17,8 @@ export default function Searchcard({
   return (
     <Link to={`/video/${id}`}>
       <div className="flex flex-col sm:flex-row gap-2 w-full hover:cursor-pointer">
-        <div className="relative w-full lg:w-1/3">
-          <img src={`${thumbnail}`} className="h-full w-full object-cover" />
+        <div className="relative w-full lg:w-1/3 rounded-2xl">
+          <img src={`${thumbnail}`} className="h-full w-full object-cover rounded-xl" />
           {length && <VideoLength length={length} />}
         </div>
         <div className="flex flex-col gap-2 w-full">

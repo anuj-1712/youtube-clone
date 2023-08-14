@@ -18,8 +18,8 @@ export default function VideoCard({
       <Link to={`video/${id}`}>
         <div className="flex flex-col hover:cursor-pointer">
           {/* thumbnail secion */}
-          <div className="relative bg-white w-full">
-            <img src={`${thumbnail}`} className="h-full w-full object-cover" />
+          <div className="relative bg-white w-full rounded-2xl">
+            <img src={`${thumbnail}`} className="h-full w-full object-cover rounded-xl" />
             {length && <VideoLength length={length} />}
           </div>
 

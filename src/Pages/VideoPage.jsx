@@ -98,7 +98,7 @@ export default function VideoDetails() {
       ) : (
         <>
           <section className="flex flex-col gap-2 w-full lg:w-9/12">
-            <div className="w-full h-[30vh] sm:h-[60vh] xl:h-[75vh] min-h-[300px] max-h-[800px] border-[1px] border-white">
+            <div className="w-full h-[30vh] sm:h-[60vh] xl:h-[75vh] min-h-[300px] max-h-[800px] border-[1px] border-white border-opacity-30">
               <ReactPlayer
                 url={`https://www.youtube.com/watch?v=${id}`}
                 controls

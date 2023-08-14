@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { IconContext } from "react-icons";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineSearch, AiOutlineBell } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import youtubeLogo from "../assets/icons8-youtube-48.png";
@@ -23,7 +23,7 @@ export default function Header() {
       {/* logo */}
       <div className="flex justify-around items-center w-2/12 min-w-[120px] max-w-[210px]">
         <IconContext.Provider value={{ className: "burger-icon" }}>
-          <RxHamburgerMenu onClick={() => setShowSideNav(!showSideNav)} />
+          <GiHamburgerMenu onClick={() => setShowSideNav(!showSideNav)} />
         </IconContext.Provider>
         <div className="flex items-center">
           <img
@@ -38,11 +38,11 @@ export default function Header() {
       </div>
 
       {/* searchbar */}
-      <div className="hidden md:flex justify-self-center w-[37%] max-w-[450px] bg-[#1d1e1e] rounded-[12px] justify-evenly border-2 border-[#393737] items-center">
+      <div className="hidden md:flex justify-self-center w-[37%] max-w-[450px] bg-[#1d1e1e] rounded-[12px] justify-around border-2 border-[#393737] items-center">
         <input
           type="search"
           placeholder="Search"
-          className=" w-[87%] bg-[#000000] outline-none text-white text-sm rounded-l-[12px] py-1 px-4"
+          className=" w-[90%] bg-[#000000] outline-none text-white text-sm rounded-l-[12px] py-1 px-4 "
           onChange={(e) => setQuery(e.target.value)}
         />
         <IconContext.Provider value={{ className: "search-icon" }}>
@@ -62,7 +62,7 @@ export default function Header() {
           <div className="flex justify-center items-center h-5 lg:h-7 w-5 lg:w-7 bg-white text-black font-bold rounded-[50%]">{name.slice(0,1).toUpperCase()}</div>
         ) : (
           <IconContext.Provider value={{ className: "profile-icon" }}>
-            <CgProfile onClick={()=>navigate("/")}/>
+            <CgProfile onClick={()=>navigate("/login")}/>
           </IconContext.Provider>
         )}
       </div>

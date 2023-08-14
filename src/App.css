@@ -8,6 +8,7 @@ body{
 background-color: #000000;
 padding-bottom: 10%;
 overflow-x: hidden;
+font-family: 'Roboto', Arial, sans-serif;
 }
 
 body::-webkit-scrollbar{
@@ -18,7 +19,13 @@ body::-webkit-scrollbar{
   display: none;
 }
 
-.burger-icon , .bell-icon{
+.burger-icon {
+  color: white;
+  height: 27px;
+  width: 27px;
+}
+
+.bell-icon{
   color: white;
   height: 30px;
   width: 35px;

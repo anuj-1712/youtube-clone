@@ -16,10 +16,10 @@ export default function SuggestedVideoCard({
       {thumbnail && (
         <Link to={`/video/${id}`}>
           <div className="flex flex-col sm:flex-row gap-2 w-full hover:cursor-pointer">
-            <div className="relative w-full">
+            <div className="relative w-full rounded-2xl">
               <img
                 src={`${thumbnail}`}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover rounded-xl"
               />
               {length && <VideoLength length={length} />}
             </div>

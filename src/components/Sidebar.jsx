@@ -20,7 +20,7 @@ export default function Sidebar() {
     <>
       {showSideNav && <IconContext.Provider value={{ className: "sidebar-icons" }}>
         <nav
-          className="w-full sm:w-[20%] flex flex-col fixed h-screen left-0 top-[45px] px-8 z-20 bg-[#000000]"
+          className="w-full sm:w-[20%] min-w-[250px] max-w-[270px] flex flex-col fixed h-screen left-0 top-[45px] px-8 z-20 bg-[#000000]"
           id="sidebar"
         >
           <div className="flex flex-col gap-4 my-4">
@@ -57,7 +57,7 @@ export default function Sidebar() {
             </div>
           </div>
           <hr />
-          <div className="flex flex-col gap-4 my-4">
+          {/* <div className="flex flex-col gap-4 my-4">
             <p className="text-white">Subscriptions</p>
             <div className="flex gap-8 items-center">
               <p></p>
@@ -69,7 +69,7 @@ export default function Sidebar() {
             <div className="flex justify-between">
               <p></p>
             </div>
-          </div>
+          </div> */}
         </nav>
       </IconContext.Provider>}
       

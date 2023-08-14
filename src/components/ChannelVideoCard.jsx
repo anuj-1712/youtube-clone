@@ -13,7 +13,7 @@ export default function ChannelVideoCard({
 }) {
   return (
     <>
-      <Link to={`video/${id}`}>
+      <Link to={`/video/${id}`}>
         <div className="flex flex-col hover:cursor-pointer">
           {/* thumbnail secion */}
           <div className="relative bg-white w-full">
